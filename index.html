@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MHT CET 2026 Percentile Predictor</title>
+    <meta name="description" content="Enter your MHT CET 2026 marks and get your expected percentile instantly based on shift-wise analysis.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <div class="logo">MHT CET <span>Predictor</span></div>
+            <div class="visitor-counter">
+                👥 Visitors: <span id="visitor-count">...</span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container hero-content">
+            <h1>MHT CET 2026 Percentile Predictor</h1>
+            <p>Enter your marks and get your expected percentile instantly based on shift-wise analysis.</p>
+        </div>
+    </header>
+
+    <!-- WhatsApp CTA Section (Moved to Top Priority) -->
+    <section id="whatsapp" class="whatsapp-section">
+        <div class="container">
+            <div class="card whatsapp-card">
+                <h2>Need College Admission Guidance?</h2>
+                <p>Join our Free MHT CET Counseling WhatsApp Group to get expert advice, college recommendations, and cutoff details.</p>
+                <a href="https://chat.whatsapp.com/GN5u8K8LYuSJcjQAJnnGSX" class="btn btn-whatsapp" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+                    </svg>
+                    Join WhatsApp Group
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Predictor Section -->
+    <section id="predictor" class="predictor-section">
+        <div class="container">
+            <div class="card predictor-card">
+                <h2>Calculate Your Percentile</h2>
+                <form id="predict-form">
+                    <div class="form-group">
+                        <label for="exam-date">Exam Date</label>
+                        <select id="exam-date" required>
+                            <option value="" disabled selected>Select Date</option>
+                            <option value="11 April">11 April</option>
+                            <option value="13 April">13 April</option>
+                            <option value="15 April">15 April</option>
+                            <option value="16 April">16 April</option>
+                            <option value="17 April">17 April</option>
+                            <option value="18 April">18 April</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="exam-shift">Shift</label>
+                        <select id="exam-shift" required>
+                            <option value="" disabled selected>Select Shift</option>
+                            <option value="Shift 1">Shift 1</option>
+                            <option value="Shift 2">Shift 2</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="marks">Marks</label>
+                        <input type="number" id="marks" min="0" max="200" placeholder="e.g. 145" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Predict My Percentile</button>
+                </form>
+
+                <!-- Result Area (Hidden by default) -->
+                <div id="result-area" class="result-area hidden">
+                    <h3>Your Expected Percentile</h3>
+                    <div class="percentile-box">
+                        <span id="predicted-percentile" class="predicted-value">--%</span>
+                    </div>
+                    <div class="range-info">
+                        Expected Range: <strong id="percentile-range">--% - --%</strong>
+                    </div>
+                    <p class="disclaimer">
+                        "This is an expected percentile prediction based on shift-wise analysis. Actual results may vary."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 MHT CET Percentile Predictor. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
