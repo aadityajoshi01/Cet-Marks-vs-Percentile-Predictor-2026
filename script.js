@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const percentileRangeEl = document.getElementById('percentile-range');
     const visitorCountEl = document.getElementById('visitor-count');
 
-    // Fetch and increment visitor count
-    fetch('/api/visitors')
+    // Fetch and increment visitor count using public API (GitHub Pages compatible)
+    fetch('https://api.counterapi.dev/v1/mvppredictor2026/visits/up')
         .then(response => response.json())
         .then(data => {
             if (data && data.count !== undefined) {
