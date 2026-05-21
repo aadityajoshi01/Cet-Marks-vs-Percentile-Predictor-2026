@@ -17,6 +17,15 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error fetching visitor count:', err);
             visitorCountEl.textContent = "1k+"; // fallback
         });
+        
+    // Track WhatsApp clicks
+    const whatsappBtn = document.getElementById('whatsapp-btn');
+    if (whatsappBtn) {
+        whatsappBtn.addEventListener('click', () => {
+            fetch('https://api.counterapi.dev/v1/mvppredictor2026/whatsapp_clicks/up').catch(() => {});
+            if (typeof gtag === 'function') gtag('event', 'whatsapp_click');
+        });
+    }
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -133,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         resultArea.classList.remove('hidden');
         
-        // Track prediction event in GA4
+        // Track prediction event in GA4 & Counter API
         if (typeof gtag === 'function') {
             gtag('event', 'percentile_predicted', {
                 'event_category': 'engagement',
@@ -141,6 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 'value': Math.round(predictedPercentile)
             });
         }
+        fetch('https://api.counterapi.dev/v1/mvppredictor2026/predictions/up').catch(() => {});
         
         // Smooth scroll to result
         resultArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
