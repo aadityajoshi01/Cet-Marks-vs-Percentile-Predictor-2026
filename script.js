@@ -133,6 +133,15 @@ document.addEventListener('DOMContentLoaded', () => {
         
         resultArea.classList.remove('hidden');
         
+        // Track prediction event in GA4
+        if (typeof gtag === 'function') {
+            gtag('event', 'percentile_predicted', {
+                'event_category': 'engagement',
+                'event_label': shiftKey,
+                'value': Math.round(predictedPercentile)
+            });
+        }
+        
         // Smooth scroll to result
         resultArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });
