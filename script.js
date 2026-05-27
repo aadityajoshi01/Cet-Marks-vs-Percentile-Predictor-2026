@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultArea = document.getElementById('result-area');
     const predictedPercentileEl = document.getElementById('predicted-percentile');
     const percentileRangeEl = document.getElementById('percentile-range');
+    const predictedRankEl = document.getElementById('predicted-rank');
     const visitorCountEl = document.getElementById('visitor-count');
 
     // Fetch and increment visitor count using public API (GitHub Pages compatible)
@@ -24,6 +25,34 @@ document.addEventListener('DOMContentLoaded', () => {
         whatsappBtn.addEventListener('click', () => {
             fetch('https://api.counterapi.dev/v1/mvppredictor2026/whatsapp_clicks/up').catch(() => {});
             if (typeof gtag === 'function') gtag('event', 'whatsapp_click');
+        });
+    }
+
+    // Handle attempt selection to populate dates
+    const attemptSelect = document.getElementById('exam-attempt');
+    const dateSelect = document.getElementById('exam-date');
+    
+    const attemptDates = {
+        '1': ['11 April', '13 April', '15 April', '16 April', '17 April', '18 April'],
+        '2': ['12 May', '13 May', '14 May', '15 May', '18 May', '19 May', '20 May', '21 May']
+    };
+
+    if (attemptSelect && dateSelect) {
+        attemptSelect.addEventListener('change', (e) => {
+            const attempt = e.target.value;
+            dateSelect.innerHTML = '<option value="" disabled selected>Select Date</option>';
+            if (attemptDates[attempt]) {
+                attemptDates[attempt].forEach(date => {
+                    const option = document.createElement('option');
+                    option.value = date;
+                    option.textContent = date;
+                    dateSelect.appendChild(option);
+                });
+                dateSelect.disabled = false;
+            } else {
+                dateSelect.innerHTML = '<option value="" disabled selected>Select Date First</option>';
+                dateSelect.disabled = true;
+            }
         });
     }
 
@@ -131,14 +160,22 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         
+        // Calculate approximate rank
+        const TOTAL_CANDIDATES = 350000;
+        let predictedRank = Math.floor((100 - predictedPercentile) * (TOTAL_CANDIDATES / 100)) + 1;
+        if (predictedRank < 1) predictedRank = 1;
+        
         // Display results
         let finalPercentileStr = predictedPercentile.toFixed(2) + '%';
+        let finalRankStr = "~" + predictedRank.toLocaleString();
         if (isBelowLowest && predictedPercentile < 50) {
             finalPercentileStr = "Below 50%";
+            finalRankStr = "> 1,75,000";
         }
         
         predictedPercentileEl.textContent = finalPercentileStr;
         percentileRangeEl.textContent = foundRange.originalPercentile;
+        predictedRankEl.textContent = finalRankStr;
         
         resultArea.classList.remove('hidden');
         

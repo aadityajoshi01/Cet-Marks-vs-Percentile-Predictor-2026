@@ -65,15 +65,18 @@
                 <h2>Calculate Your Percentile</h2>
                 <form id="predict-form">
                     <div class="form-group">
+                        <label for="exam-attempt">Attempt</label>
+                        <select id="exam-attempt" required>
+                            <option value="" disabled selected>Select Attempt</option>
+                            <option value="1">Attempt 1 (April)</option>
+                            <option value="2">Attempt 2 (May)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <label for="exam-date">Exam Date</label>
-                        <select id="exam-date" required>
-                            <option value="" disabled selected>Select Date</option>
-                            <option value="11 April">11 April</option>
-                            <option value="13 April">13 April</option>
-                            <option value="15 April">15 April</option>
-                            <option value="16 April">16 April</option>
-                            <option value="17 April">17 April</option>
-                            <option value="18 April">18 April</option>
+                        <select id="exam-date" required disabled>
+                            <option value="" disabled selected>Select Date First</option>
                         </select>
                     </div>
                     
@@ -103,8 +106,11 @@
                     <div class="range-info">
                         Expected Range: <strong id="percentile-range">--% - --%</strong>
                     </div>
+                    <div class="rank-info" style="margin-top: 15px; font-size: 1.1rem; color: #444;">
+                        Approximate Rank: <strong id="predicted-rank" style="color: #007bff;">--</strong>
+                    </div>
                     <p class="disclaimer">
-                        "This is an expected percentile prediction based on shift-wise analysis. Actual results may vary."
+                        "This is an expected percentile prediction based on shift-wise analysis. Actual results may vary. Rank is approximated based on ~3.5 Lakh PCM candidates."
                     </p>
                 </div>
             </div>
